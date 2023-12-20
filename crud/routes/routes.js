@@ -5,6 +5,7 @@ import {
   getAll,
   getPost,
   remove,
+  updatePost,
 } from "../data/repository/post/index.js";
 
 const routes = express.Router();
@@ -51,7 +52,9 @@ routes.put(`/post/new/:id`, async (req, res) => {
   const body = req.body;
   const id = req.params.id;
 
-  const result = await executeSQL(getPost, id, body);
+  const dataPromise = updatePost(id, body);
+
+  const result = await executeSQL(dataPromise);
 
   res.status(400).json(result);
 });

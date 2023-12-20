@@ -34,6 +34,8 @@ export async function updatePost(id, postUpdated) {
 
   const updatedPost = await prisma.post.update({
     where: { id: Number(id) },
-    data: { ...postToUpdate, postUpdated },
+    data: { ...postUpdated },
   });
+
+  return updatedPost;
 }
